@@ -1,360 +1,182 @@
-# agentagenda
+### agentagenda —— 为智能代理提供任务管理工具
 
-An agenda and task manager for your agent.
-
-<img src="resources/image.jpg">
-
-[![Lint and Test](https://github.com/AutonomousResearchGroup/agentagenda/actions/workflows/test.yml/badge.svg)](https://github.com/AutonomousResearchGroup/agentagenda/actions/workflows/test.yml)
-[![PyPI version](https://badge.fury.io/py/agentagenda.svg)](https://badge.fury.io/py/agentagenda)
-[![License](https://img.shields.io/badge/License-MIT-blue)](https://github.com/AutonomousResearchGroup/agentagenda/blob/main/LICENSE)
-[![stars - agentagenda](https://img.shields.io/github/stars/AutonomousResearchGroup/agentagenda?style=social)](https://github.com/AutonomousResearchGroup/agentagenda)
-[![forks - agentagenda](https://img.shields.io/github/forks/AutonomousResearchGroup/agentagenda?style=social)](https://github.com/AutonomousResearchGroup/agentagenda)
+#### 简介
+`agentagenda` 是一款为智能代理设计的任务和议程管理工具，帮助你轻松创建、跟踪和管理任务。
 
 
-## Installation
+### 安装
 
 ```bash
 pip install agentagenda
 ```
 
-## Quickstart
+### 快速开始
 
-This will create a new task with the goal "Write README.md file", and then mark it as completed.
+以下代码展示了如何创建一个任务并将其标记为已完成：
 
 ```python
 from agentagenda import create_task, finish_task
 
-# Create a new task
-task = create_task("Write README.md file")
+# 创建任务
+task = create_task("编写 README.md 文件")
 print(task)
 
-# Complete the task
+# 完成任务
 finish_task(task)
 ```
 
-### 1. Creating a Task:
+### 功能介绍
 
-To create a task, use the `create_task` method. You can optionally specify a plan and steps.
+#### 1. 创建任务
+
+通过 `create_task` 方法创建一个新任务。你可以选择性地为任务指定计划和步骤。
 
 ```python
-task = create_task("Finish the project", plan="Plan for the project")
+task = create_task("完成项目", plan="项目计划")
 print(task)
 ```
 
-### 2. List All Tasks:
+#### 2. 列出所有任务
 
-Retrieve a list of all tasks that are in progress using the `list_tasks` method.
+使用 `list_tasks` 方法查看所有正在进行的任务。
 
 ```python
 tasks = list_tasks()
 print(tasks)
 ```
 
-### 3. Search for Tasks:
+#### 3. 搜索任务
 
-You can search for specific tasks using the `search_tasks` method.
+使用 `search_tasks` 方法根据关键词搜索任务。
 
 ```python
-tasks = search_tasks("project")
+tasks = search_tasks("项目")
 print(tasks)
 ```
 
-### 4. Deleting a Task:
+#### 4. 删除任务
 
-To delete a task, use the `delete_task` method.
+通过 `delete_task` 方法删除任务。
 
 ```python
 delete_task(task)
 ```
 
-### 5. Completing a Task:
+#### 5. 完成任务
 
-Mark a task as complete using the `finish_task` method.
+将任务标记为已完成，使用 `finish_task` 方法。
 
 ```python
 finish_task(task)
 ```
 
-### 6. Cancelling a Task:
+#### 6. 取消任务
 
-If you want to cancel a task, use the `cancel_task` method.
+如果需要取消任务，使用 `cancel_task` 方法。
 
 ```python
 cancel_task(task)
 ```
 
-### 7. Retrieve Task ID:
+#### 7. 获取任务 ID
 
-To get the ID of a specific task, use the `get_task_id` method.
+通过 `get_task_id` 方法获取任务的 ID。
 
 ```python
 task_id = get_task_id(task)
 print(task_id)
 ```
 
-### 8. Working with Plans:
+#### 8. 处理任务计划
 
-- To create a plan for a specific goal, use the `create_plan` method.
+- 使用 `create_plan` 方法为任务创建计划。
 
 ```python
-plan = create_plan("Finish the project")
+plan = create_plan("完成项目")
 print(plan)
 ```
 
-- To update the plan of a specific task, use the `update_plan` method.
+- 使用 `update_plan` 方法更新任务的计划。
 
 ```python
-update_plan(task, "New plan for the project")
+update_plan(task, "更新后的项目计划")
 ```
 
-### 9. Working with Steps:
+#### 9. 处理任务步骤
 
-- To create a list of steps based on a given goal and plan, use the `create_steps` method.
+- 使用 `create_steps` 方法根据目标和计划创建步骤。
 
 ```python
-steps = create_steps("Finish the project", "Plan for the project")
+steps = create_steps("完成项目", "项目计划")
 print(steps)
 ```
 
-- To add a new step to a task, use the `add_step` method.
+- 使用 `add_step` 方法向任务中添加新步骤。
 
 ```python
-add_step(task, "New step for the project")
+add_step(task, "新增项目步骤")
 ```
 
-- To mark a specific step of a task as complete, use the `finish_step` method.
+- 使用 `finish_step` 方法将任务的某个步骤标记为完成。
 
 ```python
-finish_step(task, "Step to complete")
+finish_step(task, "完成某步骤")
 ```
 
-## Documentation
+---
 
-**`create_task(goal: str, plan: str = None, steps: dict = None) -> dict`**
+### 方法说明
 
-    Creates a new task based on the given goal, as well as plan and steps optionally. If no plan or steps are provided they will be generated based on the goal. Returns a dictionary representing the task.
+#### `create_task(goal: str, plan: str = None, steps: dict = None) -> dict`
+创建一个新任务，返回任务的字典表示。你可以选择性地为任务指定计划和步骤。
 
-    *Example:*
+#### `list_tasks() -> list`
+列出所有当前进行的任务。
 
-    ```python
-    task = create_task("Finish the project")
-    print(task)
-    ```
+#### `search_tasks(search_term: str) -> list`
+根据搜索关键词查找相关任务。
 
-**`list_tasks() -> list`**
+#### `delete_task(task: Union[dict, int, str]) -> None`
+删除指定任务，可以传递任务字典、任务 ID 或字符串 ID。
 
-    Returns a list of all tasks that are currently in progress.
+#### `finish_task(task: Union[dict, int, str]) -> None`
+将指定任务标记为已完成。
 
-    *Example:*
+#### `cancel_task(task: Union[dict, int, str]) -> None`
+取消指定任务。
 
-    ```python
-    tasks = list_tasks()
-    print(tasks)
-    ```
+#### `get_task_id(task: Union[dict, int, str]) -> str`
+获取指定任务的 ID。
 
-**`search_tasks(search_term: str) -> list`**
+#### `get_task_by_id(task_id: str) -> dict`
+通过任务 ID 获取任务的字典表示。
 
-    Returns a list of tasks whose goal is most relevant to the search term.
+#### `get_last_created_task() -> dict`
+获取最近创建的任务。
 
-    *Example:*
+#### `get_last_updated_task() -> dict`
+获取最近更新的任务。
 
-    ```python
-    tasks = search_tasks("project")
-    print(tasks)
-    ```
+#### `get_current_task() -> dict`
+获取当前任务。
 
-**`delete_task(task: Union[dict, int, str]) -> None`**
+#### `set_current_task(task: Union[dict, int, str]) -> dict`
+设置指定任务为当前任务。
 
-    Deletes the specified task. The task can be specified as a dictionary (as returned by `create_task`), an integer ID, or a string ID.
+#### `create_plan(goal: str) -> str`
+为指定目标创建计划。
 
-    *Example:*
+#### `update_plan(task: Union[dict, int, str], plan: str) -> dict`
+更新指定任务的计划。
 
-    ```python
-    delete_task(task)
-    ```
+#### `create_steps(goal: str, plan: str) -> list`
+根据目标和计划创建任务步骤。
 
-**`finish_task(task: Union[dict, int, str]) -> None`**
+#### `add_step(task: Union[dict, int, str], step: str) -> dict`
+向指定任务添加新步骤。
 
-    Marks the specified task as complete.
+#### `finish_step(task: Union[dict, int, str], step: str) -> dict`
+将指定任务的步骤标记为已完成。
 
-    *Example:*
-
-    ```python
-    finish_task(task)
-    ```
-
-**`cancel_task(task: Union[dict, int, str]) -> None`**
-
-    Marks the specified task as cancelled.
-
-    *Example:*
-
-    ```python
-    cancel_task(task)
-    ```
-
-**`get_task_id(task: Union[dict, int, str]) -> str`**
-
-    Returns the ID of the given task. The task can be specified as a dictionary (as returned by `create_task`), an integer ID, or a string ID.
-
-    *Example:*
-
-    ```python
-    task_id = get_task_id(task)
-    print(task_id)
-    ```
-
-**`get_task_by_id(task_id: str) -> dict`**
-
-    Returns the task with the given ID. If no task is found, None is returned.
-
-    *Example:*
-
-    ```python
-    task = get_task_by_id(task_id)
-    print(task)
-    ```
-
-**`get_last_created_task() -> dict`**
-
-    Returns the most recently created task.
-
-    *Example:*
-
-    ```python
-    task = get_last_created_task()
-    print(task)
-    ```
-
-**`get_last_updated_task() -> dict`**
-
-    Returns the most recently updated task.
-
-    *Example:*
-
-    ```python
-    task = get_last_updated_task()
-    print(task)
-    ```
-
-**`get_current_task() -> dict`**
-
-    Returns the current task.
-
-    *Example:*
-
-    ```python
-    task = get_current_task()
-    print(task)
-    ```
-
-**`set_current_task(task: Union[dict, int, str]) -> dict`**
-
-    Sets the specified task as the current task. The task can be specified as a dictionary (as returned by `create_task`), an integer ID, or a string ID.
-
-    *Example:*
-
-    ```python
-    set_current_task(task)
-    ```
-
-**`create_plan(goal: str) -> str`**
-
-    Creates a plan based on the given goal.
-
-    *Example:*
-
-    ```python
-    plan = create_plan("Finish the project")
-    print(plan)
-    ```
-
-**`update_plan(task: Union[dict, int, str], plan: str) -> dict`**
-
-    Updates the plan of the specified task. The task can be specified as a dictionary (as returned by `create_task`), an integer ID, or a string ID.
-
-    *Example:*
-
-    ```python
-    update_plan(task, "New plan for the project")
-    ```
-
-**`create_steps(goal: str, plan: str) -> list`**
-
-    Creates a list of steps based on the given goal and plan.
-
-    *Example:*
-
-    ```python
-    steps = create_steps("Finish the project", "Plan for the project")
-    print(steps)
-    ```
-
-**`update_step(task: Union[dict, int, str], step: dict) -> dict`**
-
-    Updates the specified step of the specified task. The task can be specified as a dictionary (as returned by `create_task`), an integer ID, or a string ID.
-
-    *Example:*
-
-    ```python
-    step = {"content": "New step", "completed": True}
-    update_step(task, step)
-    ```
-
-**`add_step(task: Union[dict, int, str], step: str) -> dict`**
-
-    Adds a new step to the specified task. The task can be specified as a dictionary (as returned by `create_task`), an integer ID, or a string ID.
-
-    *Example:*
-
-    ```python
-    add_step(task, "New step for the project")
-    ```
-
-**`finish_step(task: Union[dict, int, str], step: str) -> dict`**
-
-    Marks the specified step of the specified task as complete. The task can be specified as a dictionary (as returned by `create_task`), an integer ID, or a string ID.
-
-    *Example:*
-
-    ```python
-    finish_step(task, "Step to complete")
-    ```
-
-**`cancel_step(task: Union[dict, int, str], step: str) -> dict`**
-
-    Cancels the specified step of the specified task. The task can be specified as a dictionary (as returned by `create_task`), an integer ID, or a string ID.
-
-    *Example:*
-
-    ```python
-    cancel_step(task, "Step to cancel")
-    ```
-
-**`get_task_as_formatted_string(task: dict, include_plan: bool = True, include_current_step: bool = True, include_status: bool = True, include_steps: bool = True) -> str`**
-
-    Returns a string representation of the task, including the plan, status, and steps based on the arguments provided.
-
-    *Example:*
-
-    ```python
-    task_string = get_task_as_formatted_string(task, include_plan=True, include_current_step=True, include_status=True, include_steps=True)
-    print(task_string)
-    ```
-
-**`list_tasks_as_formatted_string() -> str`**
-
-    Retrieves and formats a list of all current tasks. Returns a string containing details of all current tasks.
-
-    *Example:*
-
-    ```python
-    tasks_string = list_tasks_as_formatted_string()
-    print(tasks_string)
-    ```
-
-# Contributions Welcome
-
-If you like this library and want to contribute in any way, please feel free to submit a PR and I will review it. Please note that the goal here is simplicity and accesibility, using common language and few dependencies.
-
-<img src="resources/youcreatethefuture.jpg" width="100%">
+#### `cancel_step(task: Union[dict, int, str], step: str) -> dict`
+取消指定任务的某个步骤。
